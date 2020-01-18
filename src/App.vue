@@ -1,11 +1,67 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+   <v-app id="app">
+      <v-navigation-drawer  color="green"
+                            dark
+                            expand-on-hover
+                            hide-overlay
+                            permanent
+                            right
+                            app>
+
+      <v-list nav shaped dense>
+        <v-list-item two-line>
+          <v-list-item-avatar>
+            <img src="https://randomuser.me/api/portraits/men/5.jpg">
+          </v-list-item-avatar>
+          <v-list-item-content class="text-left">
+            <v-list-item-title class="font-weight-black">SocialLink</v-list-item-title>
+            <v-list-item-subtitle>Илья Г</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider class="my-3"></v-divider>
+
+
+        <v-list-item link to="/">
+          <v-list-item-icon>
+            <v-icon>mdi-home-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="text-left">
+            <v-list-item-title class="text-left">Главная</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+
+        <v-list-item link to="/users">
+          <v-list-item-icon>
+            <v-icon>mdi-rowing</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="text-left">
+            <v-list-item-title class="text-left">Пользователи</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+
+        <v-list-item link to="/profile/1">
+          <v-list-item-icon>
+            <v-icon>mdi-rowing</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="text-left">
+            <v-list-item-title class="text-left">Моя страница</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        
+
+      </v-list>
+
+      </v-navigation-drawer>
+    
+    <v-content class="px-12 py-3">
+      <v-container fluid>
+        <router-view/>
+      </v-container>
+    </v-content>
+
+  </v-app>
 </template>
 
 <style lang="scss">
