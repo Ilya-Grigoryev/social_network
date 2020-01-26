@@ -10,20 +10,20 @@
         </v-row>
         <v-row class="text-left">
             <v-col cols="2">
-                <img :src="avatar" style="max-width: 100%">
+                <img :src="profile.photo" style="max-width: 100%">
             </v-col>
             <v-col cols="10" class="text-left">
                 <p>
-                    Веб-сайт: <a :href="profile.website" target="_blank">{{profile.website}}</a>
+                    Веб-сайт:    {{profile.website}}
                 </p>
                 <p>
                     E-mail: <a href="mailto:...">{{profile.email}}</a>
                 </p>
                 <p>
-                    Город: {{profile.address.city}}
+                    Город: {{profile.city}}
                 </p>
                 <p>
-                    Место работы: {{profile.company.name}}
+                    Место работы: {{profile.company}}
                 </p>
             </v-col>
         </v-row>
@@ -51,16 +51,18 @@ export default {
   },
     data(){
         return{
-            profile: null,
+            profile: {},
             posts: null,
-            avatar: '',
         }
     },
     methods:{
         loadUser(){
-            let url = 'http://jsonplaceholder.typicode.com/users/' + this.$route.params.id
-            this.$axios.get(url).then(response=>{
-                this.profile = response.data
+            this.profile = {login:'',password:'',name:'',website:'',email:'',city:'',company:'',photo:''}
+            let url = 'http://188.225.47.187/api/jsonstorage/8b1a4c15dc3951b4d9cde6c56e527448'
+            this.$axios.get(url)
+            .then(response=>{
+                let users = response.data
+                this.profile = users[this.$route.params.id]
             })
         },
         loadPosts(){
@@ -74,14 +76,13 @@ export default {
     mounted(){
         this.loadUser()
         this.loadPosts()
-        this.avatar = 'https://randomuser.me/api/portraits/men/'+ this.$route.params.id +'.jpg'
     },
     watch:{
         $route(){
             this.loadUser()
             this.loadPosts()
-            this.avatar = 'https://randomuser.me/api/portraits/men/'+ this.$route.params.id +'.jpg'
         }
-    }
+    },
+    props:['myId'],
 }
 </script>

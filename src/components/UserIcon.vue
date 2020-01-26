@@ -11,7 +11,7 @@
     <v-col cols="4" class="text-right">
         <v-list-item>
         <v-list-item-avatar center width="100" height="100">
-            <img :src="getSrc">
+            <img :src="photo">
             </v-list-item-avatar>
         </v-list-item>
     </v-col>
@@ -28,7 +28,7 @@
     </v-list-item>
 
         <v-card-actions>
-            <v-btn class="ma-2" outlined color="success"  link :to="getLink">
+            <v-btn class="ma-2" outlined color="success"  link :to="'/profile/'+id">
                 <v-icon left>mdi-account-card-details-outline</v-icon>
                 ПЕРЕЙТИ В ПРОФИЛЬ
             </v-btn>
@@ -42,16 +42,9 @@
 
 <script>
 export default {
-  props: ['name', 'username', 'id'],
+  props: ['name', 'username', 'id', 'photo'],
   data: () => ({
+    
   }),
-  computed:{
-      getSrc:function(){
-          return 'https://randomuser.me/api/portraits/men/'+ this.id +'.jpg'
-      },
-      getLink:function(){
-          return '/profile/' + this.id
-      }
-  }
 }
 </script>

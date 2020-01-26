@@ -20,17 +20,9 @@
 
             <v-col cols="6">
                 <b>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
+                    Совершенно новая социальная сеть<br>
+                     для деловых переговоров и дружеских бесед,<br>
+                     пока что находящаяся в разработке ))
                 </b>
             </v-col>
           </v-row>

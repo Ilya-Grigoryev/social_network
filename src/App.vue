@@ -11,11 +11,11 @@
       <v-list nav shaped dense>
         <v-list-item two-line>
           <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/men/1.jpg">
+            <img :src="user.photo">
           </v-list-item-avatar>
           <v-list-item-content class="text-left">
             <v-list-item-title class="font-weight-black">SocialLink</v-list-item-title>
-            <v-list-item-subtitle>Илья Г</v-list-item-subtitle>
+            <v-list-item-subtitle>{{user.name}}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-divider class="my-3"></v-divider>
@@ -31,7 +31,7 @@
         </v-list-item>
 
 
-        <v-list-item link to="/profile/1">
+        <v-list-item link :to="'/profile/'+id">
           <v-list-item-icon>
             <v-icon>mdi-account-outline</v-icon>
           </v-list-item-icon>
@@ -57,12 +57,41 @@
     
     <v-content class="px-12 py-3">
       <v-container fluid>
-        <router-view/>
+        <router-view v-on:login="updateUser" :user="user" :myId="id"/>
       </v-container>
     </v-content>
 
   </v-app>
 </template>
+
+
+<script>
+export default {
+  data(){
+    return{
+        user: {},
+        id: null,
+    }
+  },
+  methods:{
+      updateUser(index){
+        this.axios.get('http://188.225.47.187/api/jsonstorage/8b1a4c15dc3951b4d9cde6c56e527448')
+                .then(
+                    (response) => {
+                        let users = response.data;
+                        this.user = users[index];
+                        this.id = index;
+                    }
+                )
+      },
+  },
+  computed:{
+    
+  }
+}
+</script>
+
+
 
 <style lang="scss">
 #app {
