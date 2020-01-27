@@ -85,9 +85,10 @@ export default {
                 )
       },
   },
-  computed:{
-    
-  }
+  mounted(){
+        if (this.id == null)
+            this.$router.push('/login');
+    },
 }
 </script>
 

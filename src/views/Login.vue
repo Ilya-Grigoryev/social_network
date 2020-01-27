@@ -20,6 +20,9 @@
             <v-btn @click="authenticate">
                 Войти
             </v-btn>
+            <br><br><br>
+            
+            Нет аккаунта? <router-link to="/registr">Регистрация</router-link>
         </v-card>
     </div>
 </template>
