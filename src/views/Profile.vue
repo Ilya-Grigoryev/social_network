@@ -28,6 +28,41 @@
             </v-col>
         </v-row>
 
+
+        <div style="text-align: left;" v-if="this.$route.params.id == myId">
+            <v-col cols="10">
+            <v-card outlined max-width="1000" class="mx-auto">
+            <v-list>
+
+                <v-list-item>
+                    <v-list-item-title>
+                        <strong>
+                            <v-text-field
+                            v-model="postTitle"
+                            label="Заголовок поста"
+                            color="green"
+                            ></v-text-field>
+                        </strong>
+                    </v-list-item-title>
+
+                    <v-btn @click="addPost()" class="ma-3" outlined color="green">Опубликовать</v-btn>
+                </v-list-item>
+
+                <v-list-item>
+                    <v-textarea
+                        v-model="postBody"
+                        label="Сам пост"
+                        outlined
+                        color="green"
+                    ></v-textarea>
+                </v-list-item>
+                
+            </v-list>
+            </v-card>
+            </v-col>
+        </div>
+
+
         <v-col cols="10">
         <Post v-for="(post, index) in posts" 
         :key="index"
@@ -35,7 +70,7 @@
         :title="post.title"
         :body="post.body"
         :author="profile.name"
-        :avatar="avatar"
+        :avatar="profile.photo"
         ></Post>
         </v-col>
     </div>
@@ -52,7 +87,9 @@ export default {
     data(){
         return{
             profile: {},
-            posts: null,
+            posts: [],
+            postTitle: '',
+            postBody: '',
         }
     },
     methods:{
@@ -66,11 +103,31 @@ export default {
             })
         },
         loadPosts(){
-            let url = 'http://jsonplaceholder.typicode.com/posts?userId=' + this.$route.params.id
+            let url = 'http://188.225.47.187/api/jsonstorage/1ac7b4adad563ea2b602d7588601f9f8'
             this.$axios.get(url).then(response=>{
-                this.posts = response.data
+                let allPosts = response.data
+                this.posts = []
+                for(let post in allPosts){
+                    if (allPosts[post].userId == this.$route.params.id){
+                        this.posts.push(allPosts[post])
+                    }
+                }
             })
         },
+        addPost(){
+            this.$axios.get('http://188.225.47.187/api/jsonstorage/1ac7b4adad563ea2b602d7588601f9f8')
+                .then((response) => {
+                    let allPosts = response.data
+                    allPosts.push({
+                        userId: this.myId,
+                        title: this.postTitle,
+                        body: this.postBody
+                    })
+
+                    this.axios.put('http://188.225.47.187/api/jsonstorage/1ac7b4adad563ea2b602d7588601f9f8', allPosts);
+                    this.loadPosts()
+                })
+        }
         
     },
     mounted(){

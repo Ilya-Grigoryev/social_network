@@ -78,20 +78,20 @@ export default {
         registration(){
             this.$axios.get('http://188.225.47.187/api/jsonstorage/8b1a4c15dc3951b4d9cde6c56e527448')
                 .then((response) => {
-                        let users = response.data
-                        users.push({
-                            login: this.login,
-                            password: this.password,
-                            name: this.name,
-                            website: this.website,
-                            email: this.email,
-                            city: this.city,
-                            company: this.company,
-                            photo: this.photo
-                        })
+                    let users = response.data
+                    users.push({
+                        login: this.login,
+                        password: this.password,
+                        name: this.name,
+                        website: this.website,
+                        email: this.email,
+                        city: this.city,
+                        company: this.company,
+                        photo: this.photo
+                    })
 
-                        this.axios.put('http://188.225.47.187/api/jsonstorage/8b1a4c15dc3951b4d9cde6c56e527448', users);
-                        this.$router.push('/login');
+                    this.axios.put('http://188.225.47.187/api/jsonstorage/8b1a4c15dc3951b4d9cde6c56e527448', users);
+                    this.$router.push('/login');
                 })
         }
     },
