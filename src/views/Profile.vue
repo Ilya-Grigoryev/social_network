@@ -118,14 +118,18 @@ export default {
             this.$axios.get('http://188.225.47.187/api/jsonstorage/1ac7b4adad563ea2b602d7588601f9f8')
                 .then((response) => {
                     let allPosts = response.data
-                    allPosts.push({
+                    allPosts.unshift({
                         userId: this.myId,
                         title: this.postTitle,
                         body: this.postBody
                     })
 
-                    this.axios.put('http://188.225.47.187/api/jsonstorage/1ac7b4adad563ea2b602d7588601f9f8', allPosts);
-                    this.loadPosts()
+                    this.axios.put('http://188.225.47.187/api/jsonstorage/1ac7b4adad563ea2b602d7588601f9f8', allPosts)
+                        .then(() => {
+                            this.loadPosts();
+                            this.postTitle = '';
+                            this.postBody = '';
+                        })
                 })
         }
         

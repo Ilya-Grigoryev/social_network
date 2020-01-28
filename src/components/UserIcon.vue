@@ -35,8 +35,9 @@
         </v-card-actions>
     </v-col>
 
-    </v-row>    
+    </v-row>   
   </v-card>
+  <br>
   </div>
 </template>
 
@@ -44,7 +45,7 @@
 export default {
   props: ['name', 'username', 'id', 'photo'],
   data: () => ({
-    
+
   }),
 }
 </script>
