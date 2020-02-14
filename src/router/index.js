@@ -5,6 +5,8 @@ import Profile from '../views/Profile.vue'
 import Users from '../views/Users.vue'
 import Login from '../views/Login.vue'
 import Registration from '../views/Registration.vue'
+import Messages from '../views/Messages.vue'
+import Global from '../views/Global.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +30,14 @@ const routes = [
   {
     path: '/registr',
     component: Registration
+  },
+  {
+    path: '/messages',
+    component: Messages
+  },
+  {
+    path: '/global',
+    component: Global
   },
 ]
 

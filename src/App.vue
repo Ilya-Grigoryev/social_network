@@ -49,6 +49,26 @@
             <v-list-item-title class="text-left">Найти друзей</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+
+
+        <v-list-item link to="/messages">
+          <v-list-item-icon>
+            <v-icon>mdi-chat-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="text-left">
+            <v-list-item-title class="text-left">Сообщения</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+
+        <v-list-item link to="/global">
+          <v-list-item-icon>
+            <v-icon>mdi-message-text-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="text-left">
+            <v-list-item-title class="text-left">Глобальный чат</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         
 
       </v-list>
