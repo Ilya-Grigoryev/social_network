@@ -6,7 +6,8 @@
                             hide-overlay
                             permanent
                             right
-                            app>
+                            app
+                            v-if="id != null">
 
       <v-list nav shaped dense>
         <v-list-item two-line>

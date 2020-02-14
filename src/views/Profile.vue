@@ -82,8 +82,8 @@ import Post from '@/components/Post.vue'
 
 export default {
     components: {
-    Post
-  },
+        Post
+    },
     data(){
         return{
             profile: {},
