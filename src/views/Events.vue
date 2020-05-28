@@ -42,16 +42,14 @@ export default {
                 let allEvents = response.data
                 this.events = []
                 for(let event in allEvents){
-                    if (allEvents[event]['event_reg_logins'].indexOf(this.user.login) != -1){
-                        this.events.push(allEvents[event])
-                    }
+                    this.events.push(allEvents[event])
                 }
             })
         },
   },
   mounted(){
         this.loadPosts()
-        setInterval(() => this.loadPosts, 500);
+        setInterval(this.loadPosts, 1000);
   },
   watch:{
     $route(){

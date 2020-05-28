@@ -57,8 +57,8 @@
     </v-col>
     </v-row>
     
-    <v-btn @click="sign_up()" class="ma-1" outlined color="#5A009D">
-          <div v-if="event_author_login in event_reg_logins">
+    <v-btn @click="sign_up" class="ma-1" outlined color="#5A009D">
+          <div v-if="event_reg_logins.indexOf(user.login) == -1">
                   Записаться
           </div>
           <div v-else>
@@ -100,6 +100,21 @@ export default {
                 this.commentText = '';
             })
         },
+        sign_up(){
+            let url = 'http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66'
+            this.$axios.get(url).then(response=>{
+                let allEvents = response.data
+                if (this.event_reg_logins.indexOf(this.user.login) != -1){
+                    allEvents[parseInt(this.event_id)]['event_reg_logins'].splice(allEvents[parseInt(this.event_id)]['event_reg_logins'].indexOf(this.user.login), 1);
+                    this.event_reg_logins.splice(this.event_reg_logins.indexOf(this.user.login), 1);
+                }else{
+                    allEvents[parseInt(this.event_id)]['event_reg_logins'].push(this.user.login);
+                    this.event_reg_logins.push(this.user.login);
+                }
+
+                this.axios.put('http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66', allEvents);
+            })
+        }
   },
 }
 </script>

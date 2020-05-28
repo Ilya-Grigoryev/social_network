@@ -64,7 +64,7 @@
 
 
         <v-col cols="10">
-        <Post v-for="(event, index) in events" 
+        <Post v-for="(event, index) in events.reverse()" 
         :key="index"
         
         :event_name="event.event_name"
@@ -155,7 +155,7 @@ export default {
     mounted(){
         this.loadUser()
         this.loadPosts()
-        setInterval(() => this.loadPosts(), 1000);
+        setInterval(() => this.loadPosts, 500);
     },
     watch:{
         $route(){

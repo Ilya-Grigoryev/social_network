@@ -8,13 +8,6 @@
     style="padding: 17px;"
   >
     <v-row>
-    <v-col cols="4" class="text-right">
-        <v-list-item>
-        <v-list-item-avatar center width="100" height="100">
-            <img :src="photo">
-            </v-list-item-avatar>
-        </v-list-item>
-    </v-col>
       <v-divider vertical class="my-0"></v-divider>
     
     <v-col cols="6" class="text-left">
@@ -28,10 +21,7 @@
     </v-list-item>
 
         <v-card-actions>
-            <v-btn class="ma-2" outlined color="success"  link :to="'/profile/'+id">
-                <v-icon left>mdi-account-card-details-outline</v-icon>
-                ПЕРЕЙТИ В ПРОФИЛЬ
-            </v-btn>
+                <v-btn class="ma-2" outlined color="#5A009D"  link :to="'/profile/'+id">ПЕРЕЙТИ В ПРОФИЛЬ</v-btn>
         </v-card-actions>
     </v-col>
 
@@ -43,7 +33,7 @@
 
 <script>
 export default {
-  props: ['name', 'username', 'id', 'photo'],
+  props: ['name', 'username', 'id'],
   data: () => ({
 
   }),

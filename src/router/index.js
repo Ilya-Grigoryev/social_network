@@ -6,6 +6,7 @@ import Users from '../views/Users.vue'
 import Login from '../views/Login.vue'
 import Registration from '../views/Registration.vue'
 import Event_requests from '../views/Event_requests.vue'
+import Events from '../views/Events.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,10 @@ const routes = [
   {
     path: '/event_requests',
     component: Event_requests
+  },
+  {
+    path: '/events',
+    component: Events
   },
 ]
 

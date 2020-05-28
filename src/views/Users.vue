@@ -7,7 +7,6 @@
     :name="user.name"
     :username="user.login"
     :id="id"
-    :photo="user.photo"
 
 ></UserIcon>
   </div>

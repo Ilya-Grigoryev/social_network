@@ -34,7 +34,7 @@
             <v-icon>mdi-account-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-content class="text-left">
-            <v-list-item-title class="text-left">Мой мероприятия</v-list-item-title>
+            <v-list-item-title class="text-left">Мои мероприятия</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -44,7 +44,7 @@
             <v-icon>mdi-account-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-content class="text-left">
-            <v-list-item-title class="text-left">Мой заявки</v-list-item-title>
+            <v-list-item-title class="text-left">Мои заявки</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -55,6 +55,16 @@
           </v-list-item-icon>
           <v-list-item-content class="text-left">
             <v-list-item-title class="text-left">Все пользователи</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+
+        <v-list-item link to="/events">
+          <v-list-item-icon>
+            <v-icon>mdi-account-multiple-plus-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="text-left">
+            <v-list-item-title class="text-left">Все мероприятия</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         
