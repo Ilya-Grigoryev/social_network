@@ -2,31 +2,15 @@
     <div :v-if="profile!== null">
         <v-row class="text-left">
             <v-col cols="10">
-                <h1 class="green--text text--darken-2">
-                    <v-icon large color="green darken-2">mdi-account-outline</v-icon>
-                    {{profile.name}}
+                <h1 class="text--darken-2">
+                    <div style="color: #5A009D;">
+                        <v-icon large color="#5A009D">mdi-account-outline</v-icon>
+                        {{profile.name}}
+                    </div>
                 </h1>
             </v-col>
         </v-row>
-        <v-row class="text-left">
-            <v-col cols="2">
-                <img :src="profile.photo" style="max-width: 100%">
-            </v-col>
-            <v-col cols="10" class="text-left">
-                <p>
-                    Веб-сайт:    {{profile.website}}
-                </p>
-                <p>
-                    E-mail: <a href="mailto:...">{{profile.email}}</a>
-                </p>
-                <p>
-                    Город: {{profile.city}}
-                </p>
-                <p>
-                    Место работы: {{profile.company}}
-                </p>
-            </v-col>
-        </v-row>
+        
 
 
         <div style="text-align: left;" v-if="this.$route.params.id == myId">
@@ -38,22 +22,38 @@
                     <v-list-item-title>
                         <strong>
                             <v-text-field
-                            v-model="postTitle"
-                            label="Заголовок поста"
-                            color="green"
+                            v-model="eventTitle"
+                            label="Название мероприятия"
+                            color="#5A009D"
                             ></v-text-field>
+
+                            <v-text-field
+                            v-model="eventPlace"
+                            label="Место проведения"
+                            color="#5A009D"
+                            ></v-text-field>
+
+                            <v-text-field
+                            v-model="eventTime"
+                            label="Время проведения"
+                            color="#5A009D"
+                            ></v-text-field>
+
+
                         </strong>
                     </v-list-item-title>
 
-                    <v-btn @click="addPost()" class="ma-3" outlined color="green">Опубликовать</v-btn>
+                    <v-btn @click="addPost" class="ma-1" outlined color="#5A009D" v-if="eventTitle && eventBody && eventPlace && eventTime">
+                        Опубликовать
+                    </v-btn>
                 </v-list-item>
 
                 <v-list-item>
                     <v-textarea
-                        v-model="postBody"
-                        label="Сам пост"
+                        v-model="eventBody"
+                        label="Описание мероприятия"
                         outlined
-                        color="green"
+                        color="#5A009D"
                     ></v-textarea>
                 </v-list-item>
                 
@@ -64,13 +64,21 @@
 
 
         <v-col cols="10">
-        <Post v-for="(post, index) in posts" 
+        <Post v-for="(event, index) in events" 
         :key="index"
         
-        :title="post.title"
-        :body="post.body"
-        :author="profile.name"
-        :avatar="profile.photo"
+        :event_name="event.event_name"
+        :event_place="event.event_place"
+        :event_time="event.event_time"
+        :event_description="event.event_description"
+        :event_author_id="event.event_author_id"
+        :event_author_login="profile.login"
+        :event_reg_logins="event.event_reg_logins"
+        :event_comments="event.event_comments"
+        :event_id="event.event_id"
+        :myId="myId"
+        :user="user"
+        
         ></Post>
         </v-col>
     </div>
@@ -87,15 +95,17 @@ export default {
     data(){
         return{
             profile: {},
-            posts: [],
-            postTitle: '',
-            postBody: '',
+            events: [],
+            eventTitle: '',
+            eventBody: '',
+            eventPlace: '',
+            eventTime: '',
         }
     },
     methods:{
         loadUser(){
-            this.profile = {login:'',password:'',name:'',website:'',email:'',city:'',company:'',photo:''}
-            let url = 'http://188.225.47.187/api/jsonstorage/8b1a4c15dc3951b4d9cde6c56e527448'
+            this.profile = {login:'',password:'',name:''}
+            let url = 'http://188.225.47.187/api/jsonstorage/?id=b5fdb358d399fc57f59833491e41c652'
             this.$axios.get(url)
             .then(response=>{
                 let users = response.data
@@ -103,32 +113,40 @@ export default {
             })
         },
         loadPosts(){
-            let url = 'http://188.225.47.187/api/jsonstorage/1ac7b4adad563ea2b602d7588601f9f8'
+            let url = 'http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66'
             this.$axios.get(url).then(response=>{
-                let allPosts = response.data
-                this.posts = []
-                for(let post in allPosts){
-                    if (allPosts[post].userId == this.$route.params.id){
-                        this.posts.push(allPosts[post])
+                let allEvents = response.data
+                this.events = []
+                for(let event in allEvents){
+                    if (allEvents[event].event_author_id == this.$route.params.id){
+                        this.events.push(allEvents[event])
                     }
                 }
             })
         },
         addPost(){
-            this.$axios.get('http://188.225.47.187/api/jsonstorage/1ac7b4adad563ea2b602d7588601f9f8')
+            this.$axios.get('http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66')
                 .then((response) => {
-                    let allPosts = response.data
-                    allPosts.unshift({
-                        userId: this.myId,
-                        title: this.postTitle,
-                        body: this.postBody
+                    let allEvents = response.data
+                    allEvents.push({
+                        event_name: this.eventTitle,
+                        event_id: allEvents.length,
+                        event_place: this.eventPlace,
+                        event_time: this.eventTime,
+                        event_description: this.eventBody,
+                        event_author_id: this.$route.params.id,
+                        event_author_login: this.profile.login,
+                        event_reg_logins: [this.profile.login],
+                        event_comments: []
                     })
 
-                    this.axios.put('http://188.225.47.187/api/jsonstorage/1ac7b4adad563ea2b602d7588601f9f8', allPosts)
+                    this.axios.put('http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66', allEvents)
                         .then(() => {
                             this.loadPosts();
-                            this.postTitle = '';
-                            this.postBody = '';
+                            this.eventTitle = '';
+                            this.eventBody = '';
+                            this.eventPlace = '';
+                            this.eventTime = '';
                         })
                 })
         }
@@ -137,6 +155,7 @@ export default {
     mounted(){
         this.loadUser()
         this.loadPosts()
+        setInterval(() => this.loadPosts(), 1000);
     },
     watch:{
         $route(){
@@ -144,6 +163,6 @@ export default {
             this.loadPosts()
         }
     },
-    props:['myId'],
+    props:['myId','user'],
 }
 </script>

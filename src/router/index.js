@@ -5,8 +5,7 @@ import Profile from '../views/Profile.vue'
 import Users from '../views/Users.vue'
 import Login from '../views/Login.vue'
 import Registration from '../views/Registration.vue'
-import Messages from '../views/Messages.vue'
-import Global from '../views/Global.vue'
+import Event_requests from '../views/Event_requests.vue'
 
 Vue.use(VueRouter)
 
@@ -32,12 +31,8 @@ const routes = [
     component: Registration
   },
   {
-    path: '/messages',
-    component: Messages
-  },
-  {
-    path: '/global',
-    component: Global
+    path: '/event_requests',
+    component: Event_requests
   },
 ]
 

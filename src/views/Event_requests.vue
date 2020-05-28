@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-<!--    <img alt="Vue logo" src="../assets/logo.png"> -->
- <!--   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 
 <UserIcon v-for="(user, id) in users" :key="id"
     :name="user.name"

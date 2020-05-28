@@ -9,20 +9,22 @@
                 label="Введите логин"
                 v-model="login"
                 outlined
+                color="green"
             ></v-text-field>
 
             <v-text-field
                 label="Введите пароль"
                 v-model="password"
                 outlined
+                color="green"
             ></v-text-field>
 
-            <v-btn @click="authenticate">
+            <v-btn @click="authenticate" color="green" outlined>
                 Войти
             </v-btn>
             <br><br><br>
             
-            Нет аккаунта? <router-link to="/registr">Регистрация</router-link>
+            Нет аккаунта? <router-link color="green" to="/registr">Регистрация</router-link>
         </v-card>
     </div>
 </template>
@@ -35,7 +37,7 @@ export default {
     },
     methods:{
         authenticate(){
-            this.axios.get('http://188.225.47.187/api/jsonstorage/8b1a4c15dc3951b4d9cde6c56e527448')
+            this.axios.get('http://188.225.47.187/api/jsonstorage/?id=b5fdb358d399fc57f59833491e41c652')
                 .then(
                     (response) => {
                         let users = response.data;

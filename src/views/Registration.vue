@@ -26,41 +26,6 @@
                 outlined
             ></v-text-field>
 
-            <v-text-field
-                color="green"
-                label="Введите почту"
-                v-model="email"
-                outlined
-            ></v-text-field>
-
-            <v-text-field
-                color="green"
-                label="Введите город"
-                v-model="city"
-                outlined
-            ></v-text-field>
-
-            <v-text-field
-                color="green"
-                label="Введите компанию"
-                v-model="company"
-                outlined
-            ></v-text-field>
-
-            <v-text-field
-                color="green"
-                label="Введите веб-сайт"
-                v-model="website"
-                outlined
-            ></v-text-field>
-
-            <v-text-field
-                color="green"
-                label="Введите ссылку на фото"
-                v-model="photo"
-                outlined
-            ></v-text-field>
-
             <v-btn @click="registration" color="green" outlined>
                 Зарегистрироваться
             </v-btn>
@@ -75,30 +40,20 @@ export default {
             login: '',
             password: '',
             name: '',
-            website: '',
-            email: '',
-            city: '',
-            company: '',
-            photo: '',
         }
     },
     methods:{
         registration(){
-            this.$axios.get('http://188.225.47.187/api/jsonstorage/8b1a4c15dc3951b4d9cde6c56e527448')
+            this.$axios.get('http://188.225.47.187/api/jsonstorage/?id=b5fdb358d399fc57f59833491e41c652')
                 .then((response) => {
                     let users = response.data
                     users.push({
+                        name: this.name,
                         login: this.login,
                         password: this.password,
-                        name: this.name,
-                        website: this.website,
-                        email: this.email,
-                        city: this.city,
-                        company: this.company,
-                        photo: this.photo
                     })
 
-                    this.axios.put('http://188.225.47.187/api/jsonstorage/8b1a4c15dc3951b4d9cde6c56e527448', users);
+                    this.axios.put('http://188.225.47.187/api/jsonstorage/?id=b5fdb358d399fc57f59833491e41c652', users);
                     this.$router.push('/login');
                 })
         }

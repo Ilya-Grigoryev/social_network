@@ -1,6 +1,6 @@
 <template>
    <v-app id="app">
-      <v-navigation-drawer  color="green"
+      <v-navigation-drawer  color="#5A009D"
                             dark
                             expand-on-hover
                             hide-overlay
@@ -11,11 +11,8 @@
 
       <v-list nav shaped dense>
         <v-list-item two-line>
-          <v-list-item-avatar>
-            <img :src="user.photo">
-          </v-list-item-avatar>
           <v-list-item-content class="text-left">
-            <v-list-item-title class="font-weight-black">SocialLink</v-list-item-title>
+            <v-list-item-title class="font-weight-black">{{user.login}}</v-list-item-title>
             <v-list-item-subtitle>{{user.name}}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -37,7 +34,17 @@
             <v-icon>mdi-account-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-content class="text-left">
-            <v-list-item-title class="text-left">Мой профиль</v-list-item-title>
+            <v-list-item-title class="text-left">Мой мероприятия</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+
+        <v-list-item link :to="'/event_requests'">
+          <v-list-item-icon>
+            <v-icon>mdi-account-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content class="text-left">
+            <v-list-item-title class="text-left">Мой заявки</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -47,27 +54,7 @@
             <v-icon>mdi-account-multiple-plus-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-content class="text-left">
-            <v-list-item-title class="text-left">Найти друзей</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-
-        <v-list-item link to="/messages">
-          <v-list-item-icon>
-            <v-icon>mdi-chat-outline</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content class="text-left">
-            <v-list-item-title class="text-left">Сообщения</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-
-        <v-list-item link to="/global">
-          <v-list-item-icon>
-            <v-icon>mdi-message-text-outline</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content class="text-left">
-            <v-list-item-title class="text-left">Глобальный чат</v-list-item-title>
+            <v-list-item-title class="text-left">Все пользователи</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         
@@ -96,7 +83,7 @@ export default {
   },
   methods:{
       updateUser(index){
-        this.axios.get('http://188.225.47.187/api/jsonstorage/8b1a4c15dc3951b4d9cde6c56e527448')
+        this.axios.get('http://188.225.47.187/api/jsonstorage/?id=b5fdb358d399fc57f59833491e41c652')
                 .then(
                     (response) => {
                         let users = response.data;
