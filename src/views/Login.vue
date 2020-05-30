@@ -9,22 +9,22 @@
                 label="Введите логин"
                 v-model="login"
                 outlined
-                color="green"
+                color="#5A009D"
             ></v-text-field>
 
             <v-text-field
                 label="Введите пароль"
                 v-model="password"
                 outlined
-                color="green"
+                color="#5A009D"
             ></v-text-field>
 
-            <v-btn @click="authenticate" color="green" outlined>
+            <v-btn @click="authenticate" color="#5A009D" outlined>
                 Войти
             </v-btn>
             <br><br><br>
             
-            Нет аккаунта? <router-link color="green" to="/registr">Регистрация</router-link>
+            Нет аккаунта? <router-link color="#5A009D" to="/registr">Регистрация</router-link>
         </v-card>
     </div>
 </template>
@@ -45,7 +45,7 @@ export default {
                         for(let index in users){
                             if(this.login == users[index].login && this.password == users[index].password){
                                 this.$emit('login', index);
-                                this.$router.push('/profile/' + index);
+                                this.$router.push('/');
                                 found = true;
                                 break;
                             }

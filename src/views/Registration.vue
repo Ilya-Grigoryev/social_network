@@ -6,27 +6,27 @@
             </v-card-title>
 
             <v-text-field
-                color="green"
+                color="#5A009D"
                 label="Введите имя"
                 v-model="name"
                 outlined
             ></v-text-field>
 
             <v-text-field
-                color="green"
+                color="#5A009D"
                 label="Введите логин"
                 v-model="login"
                 outlined
             ></v-text-field>
 
             <v-text-field
-                color="green"
+                color="#5A009D"
                 label="Введите пароль"
                 v-model="password"
                 outlined
             ></v-text-field>
 
-            <v-btn @click="registration" color="green" outlined>
+            <v-btn @click="registration" color="#5A009D" outlined>
                 Зарегистрироваться
             </v-btn>
         </v-card>

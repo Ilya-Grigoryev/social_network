@@ -69,17 +69,17 @@
         </v-list-item>
         
 
-      </v-list>
+        </v-list>
 
-      </v-navigation-drawer>
-    
-    <v-content class="px-12 py-3">
-      <v-container fluid>
-        <router-view v-on:login="updateUser" :user="user" :myId="id"/>
-      </v-container>
-    </v-content>
+        </v-navigation-drawer>
+      
+      <v-content class="px-12 py-3">
+        <v-container fluid>
+          <router-view v-on:login="updateUser" :user="user" :myId="id"/>
+        </v-container>
+      </v-content>
 
-  </v-app>
+    </v-app>
 </template>
 
 

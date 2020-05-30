@@ -39,7 +39,7 @@ export default {
     loadPosts(){
             let url = 'http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66'
             this.$axios.get(url).then(response=>{
-                let allEvents = response.data
+                var allEvents = response.data
                 this.events = []
                 for(let event in allEvents){
                     if (allEvents[event]['event_reg_logins'].indexOf(this.user.login) != -1){
@@ -51,7 +51,7 @@ export default {
   },
   mounted(){
         this.loadPosts()
-        setInterval(() => this.loadPosts, 500);
+        setInterval(() => this.loadPosts(), 500);
   },
   watch:{
     $route(){

@@ -48,8 +48,8 @@ export default {
         },
   },
   mounted(){
-        this.loadPosts()
-        setInterval(this.loadPosts, 1000);
+        this.loadPosts();
+        setInterval(() => this.loadPosts(), 500);
   },
   watch:{
     $route(){

@@ -57,7 +57,7 @@
     </v-col>
     </v-row>
     
-    <v-btn @click="sign_up" class="ma-1" outlined color="#5A009D">
+    <v-btn @click="sign_up()" class="ma-1" outlined color="#5A009D">
           <div v-if="event_reg_logins.indexOf(user.login) == -1">
                   Записаться
           </div>
@@ -89,21 +89,21 @@ export default {
       addComment(){
             let url = 'http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66'
             this.$axios.get(url).then(response=>{
-                let allEvents = response.data
+                var allEvents = response.data
                 allEvents[parseInt(this.event_id)]['event_comments'].push(
                   {
                         comment_author_id: this.myId,
                         comment_author_login: this.user.login,
                         comment_text: this.commentText
                   })
-                this.axios.put('http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66', allEvents);
+                this.axios.put('http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66', allEvents)
                 this.commentText = '';
             })
         },
         sign_up(){
             let url = 'http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66'
             this.$axios.get(url).then(response=>{
-                let allEvents = response.data
+                var allEvents = response.data
                 if (this.event_reg_logins.indexOf(this.user.login) != -1){
                     allEvents[parseInt(this.event_id)]['event_reg_logins'].splice(allEvents[parseInt(this.event_id)]['event_reg_logins'].indexOf(this.user.login), 1);
                     this.event_reg_logins.splice(this.event_reg_logins.indexOf(this.user.login), 1);
@@ -111,8 +111,9 @@ export default {
                     allEvents[parseInt(this.event_id)]['event_reg_logins'].push(this.user.login);
                     this.event_reg_logins.push(this.user.login);
                 }
+                console.log(this.event_reg_logins);
+                this.axios.put('http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66', allEvents)
 
-                this.axios.put('http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66', allEvents);
             })
         }
   },

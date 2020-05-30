@@ -116,7 +116,7 @@ export default {
             let url = 'http://188.225.47.187/api/jsonstorage/?id=19ba6b6b92642c96559aaf1a3f853f66'
             this.$axios.get(url).then(response=>{
                 let allEvents = response.data
-                this.events = []
+                this.events = [];
                 for(let event in allEvents){
                     if (allEvents[event].event_author_id == this.$route.params.id){
                         this.events.push(allEvents[event])
@@ -147,15 +147,16 @@ export default {
                             this.eventBody = '';
                             this.eventPlace = '';
                             this.eventTime = '';
+                            //this.loadPosts();
                         })
                 })
         }
         
     },
     mounted(){
-        this.loadUser()
-        this.loadPosts()
-        setInterval(() => this.loadPosts, 500);
+        this.loadUser();
+        this.loadPosts();
+        setInterval((() => this.loadPosts()), 500);
     },
     watch:{
         $route(){
